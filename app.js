@@ -155,89 +155,166 @@ app.get('/api/users/:id',cors(), (req, res) => {
 //POST
 app.post('/api/users', (req, res) => {
     const sql = 'INSERT INTO users SET ?';
-    const { nombre, dia, hora, lunes, martes,
-        miercoles,
-        jueves,
-        viernes,
-        sabado,
-        domingo,
-        estado } = req.body;
-    const calendarObj = {
-        nombre: nombre,
-        dia: dia,
-        hora: hora,
-        lunes: lunes,
-        martes: martes,
-        miercoles: miercoles,
-        jueves: jueves,
-        viernes: viernes,
-        sabado: sabado,
-        domingo: domingo,
-        estado: estado
+    const { 
+        Email, 
+        Nombre, 
+        Nombre2, 
+        password_2, 
+        Apellido,
+        Apellido2,
+        Rol } = req.body;
+    const userObj = {
+        Email: Email, 
+        Nombre: Nombre, 
+        Nombre2: Nombre2, 
+        password_2: password_2, 
+        Apellido: Apellido,
+        Apellido2: Apellido2,
+        Rol: Rol
     };
-    connection.query(sql, calendarObj, error => {
+    connection.query(sql, userObj, error => {
         if (error) throw error;
-        res.send('Horario creado!');
+        res.send('Usuario creado!');
     });
 });
 
 
-app.post('/api/addcalendar', (req, res) => {
-    const sql = 'INSERT INTO calendar SET ?';
-    const { nombre, dia, hora, lunes, martes,
-        miercoles,
-        jueves,
-        viernes,
-        sabado,
-        domingo,
-        estado } = req.body;
-    const calendarObj = {
-        nombre: nombre,
-        dia: dia,
-        hora: hora,
-        lunes: lunes,
-        martes: martes,
-        miercoles: miercoles,
-        jueves: jueves,
-        viernes: viernes,
-        sabado: sabado,
-        domingo: domingo,
-        estado: estado
+app.post('/api/factura', (req, res) => {
+    const sql = 'INSERT INTO Factura SET ?';
+    const { 
+        nitFactura, 
+        users_Email, 
+        Descripcion, 
+        ValorTotal
+         } = req.body;
+    const facturaObj = {
+        nitFactura:  nitFactura, 
+        users_Email:         users_Email, 
+        Descripcion:         Descripcion, 
+        ValorTotal:         ValorTotal
     };
-    connection.query(sql, calendarObj, error => {
+    connection.query(sql, facturaObj, error => {
         if (error) throw error;
-        res.send('Horario creado!');
+        res.send('Usuario creado!');
+    });
+});
+
+app.post('/api/habitacion', (req, res) => {
+    const sql = 'INSERT INTO habitacion SET ?';
+    const { 
+        idHabitacion, 
+        Nombre_Habitacion, 
+        EstadoHabi, 
+        Descripcion, 
+        Precio, 
+        Departamento, 
+        Ciudad, 
+        Dirección, 
+        Imagen, 
+         } = req.body;
+    const facturaObj = {
+        idHabitacion:idHabitacion,  
+        Nombre_Habitacion:        Nombre_Habitacion,  
+        EstadoHabi:        EstadoHabi,  
+        Descripcion:        Descripcion,  
+        Precio:        Precio,  
+        Departamento:        Departamento,  
+        Ciudad:        Ciudad,  
+        Dirección:        Dirección,  
+        Imagen:        Imagen,  
+    };
+    connection.query(sql, facturaObj, error => {
+        if (error) throw error;
+        res.send('Habitación creado!');
     });
 });
 
 
-app.post('/api/addcalendar', (req, res) => {
-    const sql = 'INSERT INTO calendar SET ?';
-    const { nombre, dia, hora, lunes, martes,
-        miercoles,
-        jueves,
-        viernes,
-        sabado,
-        domingo,
-        estado } = req.body;
-    const calendarObj = {
-        nombre: nombre,
-        dia: dia,
-        hora: hora,
-        lunes: lunes,
-        martes: martes,
-        miercoles: miercoles,
-        jueves: jueves,
-        viernes: viernes,
-        sabado: sabado,
-        domingo: domingo,
-        estado: estado
+
+app.post('/api/reserva', (req, res) => {
+    const sql = 'INSERT INTO Reserva SET ?';
+    const { 
+        idReserva, 
+        users_Email, 
+        habitacion_idHabitacion, 
+        FechaInicio, 
+        FechaFin, 
+         } = req.body;
+    const reservaObj = {
+        idReserva:   idReserva,  
+        users_Email:         users_Email,  
+        habitacion_idHabitacion:         habitacion_idHabitacion,  
+        FechaInicio:         FechaInicio,  
+        FechaFin:         FechaFin,  
     };
-    connection.query(sql, calendarObj, error => {
+    connection.query(sql, reservaObj, error => {
         if (error) throw error;
-        res.send('Horario creado!');
+        res.send('Habitación creado!');
     });
 });
+
+
+app.post('/api/comentario', (req, res) => {
+    const sql = 'INSERT INTO Comentario SET ?';
+    const { 
+        idComentario, 
+        users_Email, 
+        habitacion_idHabitacion, 
+        texto, 
+         } = req.body;
+    const reservaObj = {
+        idComentario:   idComentario,  
+        users_Email:         users_Email,  
+        habitacion_idHabitacion:         habitacion_idHabitacion,  
+        texto:         texto,  
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Habitación creado!');
+    });
+});
+
+app.post('/api/modelodepago', (req, res) => {
+    const sql = 'INSERT INTO Modelodepago SET ?';
+    const { 
+        Factura_nitFac, 
+        Fecha, 
+        Hora, 
+        Concepto, 
+         } = req.body;
+    const reservaObj = {
+        Factura_nitFac:   Factura_nitFac,  
+        Fecha:         Fecha,  
+        Hora:         Hora,  
+        Concepto:         Concepto,  
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Habitación creado!');
+    });
+});
+
+app.post('/api/factura', (req, res) => {
+    const sql = 'INSERT INTO Factura SET ?';
+    const { 
+        nitFac, 
+        users_Email, 
+        Descripcion, 
+        ValorTotal, 
+         } = req.body;
+    const reservaObj = {
+        nitFac:   nitFac,  
+        users_Email:         users_Email,  
+        Descripcion:         Descripcion,  
+        ValorTotal:         ValorTotal,  
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Habitación creado!');
+    });
+});
+
+// FIN POST
 //---------------------------------------------------------------------------------------------------------
 
 
@@ -258,6 +335,169 @@ app.put('/api/update',cors(), (req, res) => {
     connection.query(sql, error => {
         if (error) throw error;
         res.send('Calendario actualizado!');
+    });
+});
+
+
+
+app.put('/api/users', (req, res) => {
+    const sql = 'INSERT INTO users SET ?';
+    const { 
+        Email, 
+        Nombre, 
+        Nombre2, 
+        password_2, 
+        Apellido,
+        Apellido2,
+        Rol } = req.body;
+    const userObj = {
+        Email: Email, 
+        Nombre: Nombre, 
+        Nombre2: Nombre2, 
+        password_2: password_2, 
+        Apellido: Apellido,
+        Apellido2: Apellido2,
+        Rol: Rol
+    };
+    connection.query(sql, userObj, error => {
+        if (error) throw error;
+        res.send('Usuario creado!');
+    });
+});
+
+
+app.put('/api/factura', (req, res) => {
+    const sql = 'INSERT INTO Factura SET ?';
+    const { 
+        nitFactura, 
+        users_Email, 
+        Descripcion, 
+        ValorTotal
+         } = req.body;
+    const facturaObj = {
+        nitFactura:  nitFactura, 
+        users_Email:         users_Email, 
+        Descripcion:         Descripcion, 
+        ValorTotal:         ValorTotal
+    };
+    connection.query(sql, facturaObj, error => {
+        if (error) throw error;
+        res.send('Usuario creado!');
+    });
+});
+
+app.put('/api/habitacion', (req, res) => {
+    const sql = 'INSERT INTO habitacion SET ?';
+    const { 
+        idHabitacion, 
+        Nombre_Habitacion, 
+        EstadoHabi, 
+        Descripcion, 
+        Precio, 
+        Departamento, 
+        Ciudad, 
+        Dirección, 
+        Imagen, 
+         } = req.body;
+    const facturaObj = {
+        idHabitacion:idHabitacion,  
+        Nombre_Habitacion:        Nombre_Habitacion,  
+        EstadoHabi:        EstadoHabi,  
+        Descripcion:        Descripcion,  
+        Precio:        Precio,  
+        Departamento:        Departamento,  
+        Ciudad:        Ciudad,  
+        Dirección:        Dirección,  
+        Imagen:        Imagen,  
+    };
+    connection.query(sql, facturaObj, error => {
+        if (error) throw error;
+        res.send('Habitación creado!');
+    });
+});
+
+
+
+app.put('/api/reserva', (req, res) => {
+    const sql = 'INSERT INTO Reserva SET ?';
+    const { 
+        idReserva, 
+        users_Email, 
+        habitacion_idHabitacion, 
+        FechaInicio, 
+        FechaFin, 
+         } = req.body;
+    const reservaObj = {
+        idReserva:   idReserva,  
+        users_Email:         users_Email,  
+        habitacion_idHabitacion:         habitacion_idHabitacion,  
+        FechaInicio:         FechaInicio,  
+        FechaFin:         FechaFin,  
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Habitación creado!');
+    });
+});
+
+
+app.put('/api/comentario', (req, res) => {
+    const sql = 'INSERT INTO Comentario SET ?';
+    const { 
+        idComentario, 
+        users_Email, 
+        habitacion_idHabitacion, 
+        texto, 
+         } = req.body;
+    const reservaObj = {
+        idComentario:   idComentario,  
+        users_Email:         users_Email,  
+        habitacion_idHabitacion:         habitacion_idHabitacion,  
+        texto:         texto,  
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Habitación creado!');
+    });
+});
+
+app.put('/api/modelodepago', (req, res) => {
+    const sql = 'INSERT INTO Modelodepago SET ?';
+    const { 
+        Factura_nitFac, 
+        Fecha, 
+        Hora, 
+        Concepto, 
+         } = req.body;
+    const reservaObj = {
+        Factura_nitFac:   Factura_nitFac,  
+        Fecha:         Fecha,  
+        Hora:         Hora,  
+        Concepto:         Concepto,  
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Habitación creado!');
+    });
+});
+
+app.put('/api/factura', (req, res) => {
+    const sql = 'INSERT INTO Factura SET ?';
+    const { 
+        nitFac, 
+        users_Email, 
+        Descripcion, 
+        ValorTotal, 
+         } = req.body;
+    const reservaObj = {
+        nitFac:   nitFac,  
+        users_Email:         users_Email,  
+        Descripcion:         Descripcion,  
+        ValorTotal:         ValorTotal,  
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Habitación creado!');
     });
 });
 //---------------------------------------------------------------------------------------------------------
