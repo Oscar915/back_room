@@ -136,7 +136,7 @@ app.get('/api/comentario/:id',cors(), (req, res) => {
 
 app.get('/api/users/:id',cors(), (req, res) => {
     const { id } = req.params;
-    const sql = `SELECT * FROM Comentario WHERE Email= ${id}`;
+    const sql = `SELECT * FROM users WHERE Email= ${id}`;
     connection.query(sql, (error, result) => {
         if (error) throw error;
         if (result.length > 0) {
