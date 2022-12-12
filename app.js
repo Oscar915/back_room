@@ -24,6 +24,8 @@ const connection = mysql.createConnection({
     database: 'roomback'
 });
 
+
+// APIS PARA USUARIOS
 app.get('/api/users',cors(), (req, res) => {
     const sql = `SELECT * FROM users`;
     connection.query(sql, (error, result) => {
@@ -37,10 +39,52 @@ app.get('/api/users',cors(), (req, res) => {
     });
 });
 
+app.post('/api/users', (req, res) => {
+    const sql = 'INSERT INTO users SET ?';
+    const { nombre, dia, hora, lunes, martes,
+        miercoles,
+        jueves,
+        viernes,
+        sabado,
+        domingo,
+        estado } = req.body;
+    const calendarObj = {
+        nombre: nombre,
+        dia: dia,
+        hora: hora,
+        lunes: lunes,
+        martes: martes,
+        miercoles: miercoles,
+        jueves: jueves,
+        viernes: viernes,
+        sabado: sabado,
+        domingo: domingo,
+        estado: estado
+    };
+    connection.query(sql, calendarObj, error => {
+        if (error) throw error;
+        res.send('Horario creado!');
+    });
+});
 
-app.get('/api/users/:id',cors(), (req, res) => {
+//APIS PARA LAS HABITACIONES
+app.get('/api/habitaciones',cors(), (req, res) => {
+    const sql = `SELECT * FROM habitacion`;
+    connection.query(sql, (error, result) => {
+        if (error) throw error;
+
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            res.send('Not result');
+        }
+    });
+});
+
+
+app.get('/api/habitacion/:id',cors(), (req, res) => {
     const { id } = req.params;
-    const sql = `SELECT * FROM users WHERE id=${id}`;
+    const sql = `SELECT * FROM habitacion WHERE IdHabitacion=${id}`;
     connection.query(sql, (error, result) => {
         if (error) throw error;
 
@@ -137,17 +181,6 @@ app.delete('/api/deletecalendar/:id',cors(), (req, res) => {
 });
 
 
-// Sonar timbre
-app.post('/api/sound',cors(), (req, res) => {
-   console.log("Sonó el timbre");
-   res.send('Ah sonado el timbre');
-});
-
-// Sonar timbre
-app.get('/api/sound', cors(),(req, res) => {
-    console.log("Sonó el timbre");
-    res.send('Ah sonado el timbre');
- });
 app.listen(3000, () => {
     console.log("nodejs app running...");
 });
