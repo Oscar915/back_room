@@ -341,7 +341,7 @@ app.put('/api/update',cors(), (req, res) => {
 
 
 app.put('/api/users', (req, res) => {
-    const sql = 'INSERT INTO users SET ?';
+    const sql = 'UPDATE  users SET ?';
     const { 
         Email, 
         Nombre, 
