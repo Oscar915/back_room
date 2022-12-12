@@ -19,51 +19,10 @@ app.get("/api", (req, res) => {
 
 const connection = mysql.createConnection({
     host: 'db4free.net',
-    user: 'nancybell',
-    password: 'nancybell',
-    database: 'belldata'
+    user: 'roombackbd',
+    password: '12345678',
+    database: 'roomback'
 });
-
-app.post("/api/login", (req, res) => {
-    const user = {
-        id: req.body.id,
-        nombre: req.body.nombre,
-    }
-
-    jwt.sign({ user }, 'secretkey', { expiresIn: '2h' }, (err, token) => {
-        res.json({
-            token
-        });
-    });
-
-});
-
-app.post("/api/posts", verifyToken, (req, res) => {
-
-    jwt.verify(req.token, 'secretkey', (error, authData) => {
-        if (error) {
-            res.sendStatus(403);
-        } else {
-            res.json({
-                mensaje: "Post fue creado",
-                authData
-            });
-        }
-    });
-});
-
-// Authorization: Bearer <token>
-function verifyToken(req, res, next) {
-    const bearerHeader = req.headers['authorization'];
-
-    if (typeof bearerHeader !== 'undefined') {
-        const bearerToken = bearerHeader.split(" ")[1];
-        req.token = bearerToken;
-        next();
-    } else {
-        res.sendStatus(403);
-    }
-}
 
 app.get('/api/users',cors(), (req, res) => {
     const sql = `SELECT * FROM users`;
