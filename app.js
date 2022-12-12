@@ -367,7 +367,7 @@ app.put('/api/users', (req, res) => {
 
 
 app.put('/api/factura', (req, res) => {
-    const sql = 'INSERT INTO Factura SET ?';
+    const sql = 'UPDATE Factura SET ?';
     const { 
         nitFactura, 
         users_Email, 
@@ -387,7 +387,7 @@ app.put('/api/factura', (req, res) => {
 });
 
 app.put('/api/habitacion', (req, res) => {
-    const sql = 'INSERT INTO habitacion SET ?';
+    const sql = 'UPDATE habitacion SET ?';
     const { 
         idHabitacion, 
         Nombre_Habitacion, 
@@ -419,7 +419,7 @@ app.put('/api/habitacion', (req, res) => {
 
 
 app.put('/api/reserva', (req, res) => {
-    const sql = 'INSERT INTO Reserva SET ?';
+    const sql = 'UPDATE Reserva SET ?';
     const { 
         idReserva, 
         users_Email, 
@@ -442,7 +442,7 @@ app.put('/api/reserva', (req, res) => {
 
 
 app.put('/api/comentario', (req, res) => {
-    const sql = 'INSERT INTO Comentario SET ?';
+    const sql = 'UPDATEComentario SET ?';
     const { 
         idComentario, 
         users_Email, 
@@ -462,7 +462,7 @@ app.put('/api/comentario', (req, res) => {
 });
 
 app.put('/api/modelodepago', (req, res) => {
-    const sql = 'INSERT INTO Modelodepago SET ?';
+    const sql = 'UPDATE Modelodepago SET ?';
     const { 
         Factura_nitFac, 
         Fecha, 
@@ -482,7 +482,7 @@ app.put('/api/modelodepago', (req, res) => {
 });
 
 app.put('/api/factura', (req, res) => {
-    const sql = 'INSERT INTO Factura SET ?';
+    const sql = 'UPDATE Factura SET ?';
     const { 
         nitFac, 
         users_Email, 
