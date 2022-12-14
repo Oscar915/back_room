@@ -188,7 +188,7 @@ app.post('/api/factura', (req, res) => {
         ValorTotal
          } = req.body;
     const facturaObj = {
-        nitFactura:  nitFactura, 
+        nitFac:  nitFactura, 
         users_Email:         users_Email, 
         Descripcion:         Descripcion, 
         ValorTotal:         ValorTotal
@@ -209,7 +209,7 @@ app.post('/api/habitacion', (req, res) => {
         Precio, 
         Departamento, 
         Ciudad, 
-        Dirección, 
+        Direccion, 
         Imagen, 
          } = req.body;
     const facturaObj = {
@@ -220,7 +220,7 @@ app.post('/api/habitacion', (req, res) => {
         Precio:        Precio,  
         Departamento:        Departamento,  
         Ciudad:        Ciudad,  
-        Dirección:        Dirección,  
+        Direccion:        Direccion,  
         Imagen:        Imagen,  
     };
     connection.query(sql, facturaObj, error => {
