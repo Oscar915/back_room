@@ -217,7 +217,7 @@ app.post('/api/factura', (req, res) => {
         ValorTotal
          } = req.body;
     const facturaObj = {
-        nitFactura:  nitFactura, 
+        nitFac:  nitFactura, 
         users_Email:         users_Email, 
         Descripcion:         Descripcion, 
         ValorTotal:         ValorTotal
