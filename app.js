@@ -420,7 +420,7 @@ app.put('/api/factura', (req, res) => {
 });
 
 app.put('/api/habitacion', (req, res) => {
-    const sql = 'UPDATE habitacion SET ?';
+    const sql = 'UPDATE habitacion SET ?'; 
     const { 
         IdHabitacion, 
         Nombre_Habitacion, 
@@ -433,7 +433,7 @@ app.put('/api/habitacion', (req, res) => {
         Imagen, 
         correo_arrendatario} = req.body;
     const facturaObj = {
-        idHabitacion:IdHabitacion,  
+        IdHabitacion:IdHabitacion,  
         Nombre_Habitacion:        Nombre_Habitacion,  
         EstadoHabi:        EstadoHabi,  
         Descripcion:        Descripcion,  
