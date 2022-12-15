@@ -52,7 +52,7 @@ app.get('/api/Reserva',cors(), (req, res) => {
 });
 app.get('/api/reserva/:correo',cors(), (req, res) => {
     const { correo } = req.params;
-    const sql = `SELECT * FROM Reserva WHERE users_Email='${correo}'`;
+    const sql = `SELECT * FROM habitacion WHERE correo_arrendatario='${correo}'`;
     connection.query(sql, (error, result) => {
         if (error) throw error;
 
@@ -243,7 +243,7 @@ app.post('/api/habitacion', (req, res) => {
         Ciudad, 
         Direccion, 
         Imagen, 
-         } = req.body;
+        correo_arrendatario} = req.body;
     const facturaObj = {
         idHabitacion:idHabitacion,  
         Nombre_Habitacion:        Nombre_Habitacion,  
@@ -254,6 +254,7 @@ app.post('/api/habitacion', (req, res) => {
         Ciudad:        Ciudad,  
         Direccion:        Direccion,  
         Imagen:        Imagen,  
+        correo_arrendatario: correo_arrendatario
     };
     connection.query(sql, facturaObj, error => {
         if (error) throw error;
@@ -430,7 +431,7 @@ app.put('/api/habitacion', (req, res) => {
         Ciudad, 
         Dirección, 
         Imagen, 
-         } = req.body;
+        correo_arrendatario} = req.body;
     const facturaObj = {
         idHabitacion:idHabitacion,  
         Nombre_Habitacion:        Nombre_Habitacion,  
@@ -441,6 +442,7 @@ app.put('/api/habitacion', (req, res) => {
         Ciudad:        Ciudad,  
         Dirección:        Dirección,  
         Imagen:        Imagen,  
+        correo_arrendatario:correo_arrendatario
     };
     connection.query(sql, facturaObj, error => {
         if (error) throw error;
