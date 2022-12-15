@@ -488,7 +488,7 @@ app.put('/api/reserva', (req, res) => {
 
 
 app.put('/api/comentario', (req, res) => {
-    const sql = 'UPDATEComentario SET ?';
+    const sql = 'UPDATE Comentario SET ?';
     const { 
         idComentario, 
         users_Email, 
@@ -548,6 +548,25 @@ app.put('/api/factura', (req, res) => {
 });
 //---------------------------------------------------------------------------------------------------------
 
+app.delete('/api/reserva/:id',cors(), (req, res) => {
+    const { id } = req.params;
+    const sql = `DELETE FROM Reserva WHERE idReserva= ${id}`;
+
+    connection.query(sql, error => {
+        if (error) throw error;
+        res.send('reserva eliminado');
+    });
+});
+
+app.delete('/api/habitacion/:id',cors(), (req, res) => {
+    const { id } = req.params;
+    const sql = `DELETE FROM habitacion WHERE IdHabitacion= ${id}`;
+
+    connection.query(sql, error => {
+        if (error) throw error;
+        res.send('habitacion eliminado');
+    });
+});
 
 
 
