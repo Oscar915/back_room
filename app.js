@@ -96,7 +96,7 @@ app.get('/api/Comentario',cors(), (req, res) => {
 
 
 app.get('/api/habitaciones',cors(), (req, res) => {
-    const sql = `SELECT * FROM habitacion`;
+    const sql = `SELECT * FROM habitacion WHERE EstadoHabi='Libre'`;
     connection.query(sql, (error, result) => {
         if (error) throw error;
 
