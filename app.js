@@ -453,10 +453,10 @@ app.put('/api/habitacion', (req, res) => {
 
 app.put('/api/updatehabitacion', (req, res) => {
     const { 
-        idHabitacion, 
+        IdHabitacion, 
         EstadoHabi, 
         } = req.body;
-    const sql = `UPDATE habitacion SET EstadoHabi = "${EstadoHabi}" WHERE IdHabitacion =${idHabitacion}`;
+    const sql = `UPDATE habitacion SET EstadoHabi = "${EstadoHabi}" WHERE IdHabitacion =${IdHabitacion}`;
     connection.query(sql, error => {
         if (error) throw error;
         res.send('Habitación creado!');
