@@ -51,6 +51,21 @@ app.get('/api/Reserva',cors(), (req, res) => {
     });
 });
 
+app.get('/api/Reserva/:correo',cors(), (req, res) => {
+    const { correo } = req.params;
+    const sql = `SELECT * FROM Reserva WHERE users_Email=${correo}`;
+    connection.query(sql, (error, result) => {
+        if (error) throw error;
+
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            res.send('Not result');
+        }
+    });
+});
+
+
 app.get('/api/Comentario',cors(), (req, res) => {
     const sql = `SELECT * FROM Comentario`;
     connection.query(sql, (error, result) => {
@@ -80,6 +95,20 @@ app.get('/api/habitaciones',cors(), (req, res) => {
 
 app.get('/api/factura',cors(), (req, res) => {
     const sql = `SELECT * FROM Factura`;
+    connection.query(sql, (error, result) => {
+        if (error) throw error;
+
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            res.send('Not result');
+        }
+    });
+});
+
+app.get('/api/factura/:correo',cors(), (req, res) => {
+    const { correo } = req.params;
+    const sql = `SELECT * FROM Factura WHERE users_Email=${correo}`;
     connection.query(sql, (error, result) => {
         if (error) throw error;
 
