@@ -359,6 +359,53 @@ app.put('/api/activarhabi',cors(), (req, res) => {
     });
 });
 
+
+//Activar Arrendador
+app.put('/api/activararrendador',cors(), (req, res) => {
+    const { Id } = req.body;
+    const sql = `UPDATE Arrendador SET Estado = 'Activo' WHERE Arrendador.Id =  '${Id}'`;
+
+    connection.query(sql, error => {
+        if (error) throw error;
+        res.send('Habitacion activada!');
+    });
+});
+
+
+
+//Desactivar Arrendador
+app.put('/api/desactivararrendador',cors(), (req, res) => {
+    const { Id } = req.body;
+    const sql = `UPDATE Arrendador SET Estado = 'Inactivo' WHERE Arrendador.Id =  '${Id}'`;
+
+    connection.query(sql, error => {
+        if (error) throw error;
+        res.send('Habitacion activada!');
+    });
+});
+
+//Desactivar reserva
+app.put('/api/desactivarreserva',cors(), (req, res) => {
+    const { Id } = req.body;
+    const sql = `UPDATE Reserva SET Estado = 'Inactivo' WHERE Reserva.Id = '${Id}'`;
+
+    connection.query(sql, error => {
+        if (error) throw error;
+        res.send('Habitacion activada!');
+    });
+});
+
+//Activar reserva
+app.put('/api/activarreserva',cors(), (req, res) => {
+    const { Id } = req.body;
+    const sql = `UPDATE Reserva SET Estado = 'Activo' WHERE Reserva.Id = '${Id}'`;
+
+    connection.query(sql, error => {
+        if (error) throw error;
+        res.send('Habitacion activada!');
+    });
+});
+
 app.listen(3000, () => {
     console.log("nodejs app running...");
 });
