@@ -55,6 +55,21 @@ app.get('/api/habilibres', cors(), (req, res) => {
 });
 
 
+// TRAE TODAS LAS HABITACIONES DE UN ARRENDADOR
+app.get('/api/habitaciones/:Id', cors(), (req, res) => {
+    const { Id } = req.params;
+    const sql = `SELECT * FROM Habitacion WHERE Id_administrador='${Id}'`;
+    connection.query(sql, (error, result) => {
+        if (error) throw error;
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            res.send('Not result');
+        }
+    });
+});
+
+
 //TRATE TODOS LOS COMENTARIOS
 app.get('/api/comentarios', cors(), (req, res) => {
     const sql = `SELECT * FROM Estudiante`;
@@ -358,7 +373,7 @@ app.put('/api/desactivararrendador',cors(), (req, res) => {
 
     connection.query(sql, error => {
         if (error) throw error;
-        res.send('Habitacion activada!');
+        res.send('Arrendador desactivado!');
     });
 });
 
