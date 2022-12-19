@@ -115,6 +115,38 @@ app.get('/api/reserva',cors(), (req, res) => {
 });
 
 
+
+
+
+
+
+//POST 
+app.post('/api/estudiante', (req, res) => {
+    const sql = 'INSERT INTO Estudiante SET ?';
+    const { 
+        id, 
+        Nombres, 
+        Apellidos, 
+        Contraseña, 
+        Correo, 
+        Carnet, 
+        Estado, 
+         } = req.body;
+    const reservaObj = {
+        id:id,  
+        Nombres:        Nombres,  
+        Apellidos:        Apellidos,  
+        Contraseña:        Contraseña,  
+        Correo:        Correo,  
+        Carnet:        Carnet,  
+        Estado:        Estado, 
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Estudiante creado!');
+    });
+});
+
 app.listen(3000, () => {
     console.log("nodejs app running...");
 });
