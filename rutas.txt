@@ -12,6 +12,17 @@
 
 >>> METHOD GET
 
+/estudiantes
+/estudiantes/id
+/comentario
+/reserva
+/modopago
+/factura
+/arrendador
+/arrendador/id
+/habitaciones
+/habitacion/id
+
 
 >>> METHOD UPDATE
 
