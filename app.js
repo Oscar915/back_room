@@ -40,6 +40,18 @@ app.get('/api/arrendadores', cors(), (req, res) => {
     });
 });
 
+// SELECT * FROM `Habitacion` WHERE Disponibilidad='Libre'
+app.get('/api/habilibres', cors(), (req, res) => {
+    const sql = `SELECT * FROM Habitacion WHERE Disponibilidad='Libre'`;
+    connection.query(sql, (error, result) => {
+        if (error) throw error;
+        if (result.length > 0) {
+            res.json(result);
+        } else {
+            res.send('Not result');
+        }
+    });
+});
 app.get('/api/comentarios', cors(), (req, res) => {
     const sql = `SELECT * FROM Estudiante`;
     connection.query(sql, (error, result) => {
@@ -269,6 +281,33 @@ app.post('/api/modopago', (req, res) => {
     });
 });
 
+
+
+app.post('/api/reserva', (req, res) => {
+    const sql = 'INSERT INTO Reserva SET ?';
+    const {
+        Id,
+        Id_estudiante,
+        Id_habitacion,
+        Fecha_inicio,
+        Fecha_final,
+        Estado,
+        Contrato,
+    } = req.body;
+    const reservaObj = {
+        Id: Id,
+        Id_estudiante: Id_estudiante,
+        Id_habitacion: Id_habitacion,
+        Fecha_inicio: Fecha_inicio,
+        Fecha_final: Fecha_final,
+        Estado: Estado,
+        Contrato: Contrato,
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Modo de pago creado!');
+    });
+}); 
 
 
 app.post('/api/reserva', (req, res) => {
