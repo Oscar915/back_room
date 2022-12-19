@@ -121,6 +121,31 @@ app.get('/api/reserva',cors(), (req, res) => {
 
 
 //POST 
+app.post('/api/arrendador', (req, res) => {
+    const sql = 'INSERT INTO Arrendador SET ?';
+    const { 
+        id, 
+        Nombres, 
+        Apellidos, 
+        Contraseña, 
+        Correo, 
+        Permiso, 
+        Estado, 
+         } = req.body;
+    const reservaObj = {
+        id:id,  
+        Nombres:        Nombres,  
+        Apellidos:        Apellidos,  
+        Contraseña:        Contraseña,  
+        Correo:        Correo,  
+        Permiso:        Permiso,  
+        Estado:        Estado, 
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Arrendador creado!');
+    });
+});
 app.post('/api/estudiante', (req, res) => {
     const sql = 'INSERT INTO Estudiante SET ?';
     const { 
