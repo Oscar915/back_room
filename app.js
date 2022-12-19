@@ -17,6 +17,7 @@ app.get("/api", (req, res) => {
     });
 });
 
+//CONEXIÓN A BASE DE DATOS
 const connection = mysql.createConnection({
     host: 'db4free.net',
     user: 'roombackbd',
@@ -27,7 +28,7 @@ const connection = mysql.createConnection({
 //---------------------------------------------------------------------------------------------------------
 // GET
 
-
+// TRAE TODOS LOS ARRENDADORES
 app.get('/api/arrendadores', cors(), (req, res) => {
     const sql = `SELECT * FROM Arrendador`;
     connection.query(sql, (error, result) => {
@@ -40,7 +41,7 @@ app.get('/api/arrendadores', cors(), (req, res) => {
     });
 });
 
-// SELECT * FROM `Habitacion` WHERE Disponibilidad='Libre'
+// TRAE TODAS LAS HABITACIONES LIBRES
 app.get('/api/habilibres', cors(), (req, res) => {
     const sql = `SELECT * FROM Habitacion WHERE Disponibilidad='Libre'`;
     connection.query(sql, (error, result) => {
@@ -52,6 +53,9 @@ app.get('/api/habilibres', cors(), (req, res) => {
         }
     });
 });
+
+
+//TRATE TODOS LOS COMENTARIOS
 app.get('/api/comentarios', cors(), (req, res) => {
     const sql = `SELECT * FROM Estudiante`;
     connection.query(sql, (error, result) => {
@@ -64,6 +68,7 @@ app.get('/api/comentarios', cors(), (req, res) => {
     });
 });
 
+//TRAE TODOS LOS ESTUDIANTES
 app.get('/api/estudiantes', cors(), (req, res) => {
     const sql = `SELECT * FROM Estudiante`;
     connection.query(sql, (error, result) => {
@@ -76,7 +81,7 @@ app.get('/api/estudiantes', cors(), (req, res) => {
     });
 });
 
-
+//TRAE TODAS LAS FACTURAS
 app.get('/api/facturas', cors(), (req, res) => {
     const sql = `SELECT * FROM Factura`;
     connection.query(sql, (error, result) => {
@@ -89,7 +94,7 @@ app.get('/api/facturas', cors(), (req, res) => {
     });
 });
 
-
+// TRAE TODAS LAS HABITACIONES
 app.get('/api/habitaciones', cors(), (req, res) => {
     const sql = `SELECT * FROM Habitacion`;
     connection.query(sql, (error, result) => {
@@ -102,6 +107,7 @@ app.get('/api/habitaciones', cors(), (req, res) => {
     });
 });
 
+// TRAE TODOS LOS MODOS DE PAGO
 app.get('/api/modopago', cors(), (req, res) => {
     const sql = `SELECT * FROM Modo_pago`;
     connection.query(sql, (error, result) => {
@@ -114,6 +120,7 @@ app.get('/api/modopago', cors(), (req, res) => {
     });
 });
 
+//TRE TODAS LAS RESERVAS
 app.get('/api/reserva', cors(), (req, res) => {
     const sql = `SELECT * FROM Reserva`;
     connection.query(sql, (error, result) => {
@@ -127,12 +134,8 @@ app.get('/api/reserva', cors(), (req, res) => {
 });
 
 
-
-
-
-
-
 //POST 
+// AGREGAR ARRENDADOR 
 app.post('/api/arrendador', (req, res) => {
     const sql = 'INSERT INTO Arrendador SET ?';
     const {
@@ -159,7 +162,7 @@ app.post('/api/arrendador', (req, res) => {
     });
 });
 
-
+// AGREGAR ESTUDIANTE 
 app.post('/api/estudiante', (req, res) => {
     const sql = 'INSERT INTO Estudiante SET ?';
     const {
@@ -186,6 +189,8 @@ app.post('/api/estudiante', (req, res) => {
     });
 });
 
+
+// AGREGAR COMENTARIO
 app.post('/api/comentario', (req, res) => {
     const sql = 'INSERT INTO Comentario SET ?';
     const {
@@ -206,8 +211,7 @@ app.post('/api/comentario', (req, res) => {
     });
 });
 
-
-
+// AGREGAR FACTURA
 app.post('/api/factura', (req, res) => {
     const sql = 'INSERT INTO Factura SET ?';
     const {
@@ -227,7 +231,7 @@ app.post('/api/factura', (req, res) => {
 });
 
 
-
+//AGREGAR HABITACIÓN
 app.post('/api/habitacion', (req, res) => {
     const sql = 'INSERT INTO Habitacion SET ?';
     const {
@@ -260,7 +264,7 @@ app.post('/api/habitacion', (req, res) => {
     });
 });
 
-
+// AGREGAR MODO DE PAGO
 app.post('/api/modopago', (req, res) => {
     const sql = 'INSERT INTO Modo_pago SET ?';
     const {
@@ -282,7 +286,7 @@ app.post('/api/modopago', (req, res) => {
 });
 
 
-
+//AGGREGAR RESERVA
 app.post('/api/reserva', (req, res) => {
     const sql = 'INSERT INTO Reserva SET ?';
     const {
@@ -309,32 +313,6 @@ app.post('/api/reserva', (req, res) => {
     });
 }); 
 
-//Agregar reserva
-app.post('/api/reserva', (req, res) => {
-    const sql = 'INSERT INTO Reserva SET ?';
-    const {
-        Id,
-        Id_estudiante,
-        Id_habitacion,
-        Fecha_inicio,
-        Fecha_final,
-        Estado,
-        Contrato,
-    } = req.body;
-    const reservaObj = {
-        Id: Id,
-        Id_estudiante: Id_estudiante,
-        Id_habitacion: Id_habitacion,
-        Fecha_inicio: Fecha_inicio,
-        Fecha_final: Fecha_final,
-        Estado: Estado,
-        Contrato: Contrato,
-    };
-    connection.query(sql, reservaObj, error => {
-        if (error) throw error;
-        res.send('Modo de pago creado!');
-    });
-}); 
 
 
 //Desactivar habitación
