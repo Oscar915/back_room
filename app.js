@@ -259,7 +259,7 @@ app.post('/api/habitacion', (req, res) => {
         Departamento,
         Ciudad,
         Direccion,
-        id_administrador,
+        Id_administrador,
     } = req.body;
     const reservaObj = {
         Id: Id,
@@ -271,7 +271,7 @@ app.post('/api/habitacion', (req, res) => {
         Departamento: Departamento,
         Ciudad: Ciudad,
         Direccion: Direccion,
-        id_administrador: id_administrador,
+        Id_administrador: Id_administrador,
     };
     connection.query(sql, reservaObj, error => {
         if (error) throw error;
