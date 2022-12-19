@@ -1,0 +1,24 @@
+
+======================RUTAS============================ 
+
+>>> METHOD POST
+/estudiante
+/comentario
+/reserva
+/modopago
+/factura
+/arrendador
+/habitacion
+
+>>> METHOD GET
+
+
+>>> METHOD UPDATE
+
+
+>>> METHOD DELETE
+
+
+
+
+
