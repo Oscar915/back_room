@@ -146,6 +146,8 @@ app.post('/api/arrendador', (req, res) => {
         res.send('Arrendador creado!');
     });
 });
+
+
 app.post('/api/estudiante', (req, res) => {
     const sql = 'INSERT INTO Estudiante SET ?';
     const { 
@@ -165,6 +167,80 @@ app.post('/api/estudiante', (req, res) => {
         Correo:        Correo,  
         Carnet:        Carnet,  
         Estado:        Estado, 
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Estudiante creado!');
+    });
+});
+
+app.post('/api/comentario', (req, res) => {
+    const sql = 'INSERT INTO Comentario SET ?';
+    const { 
+        id, 
+        Id_reserva, 
+        Id_habitacion, 
+        Contenido, 
+         } = req.body;
+    const reservaObj = {
+        id: id,  
+        Id_reserva:        Id_reserva,  
+        Id_habitacion:        Id_habitacion,  
+        Contenido:        Contenido,   
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Estudiante creado!');
+    });
+});
+
+
+
+app.post('/api/factura', (req, res) => {
+    const sql = 'INSERT INTO Factura SET ?';
+    const { 
+        id, 
+        Id_reserva, 
+        Valor_total, 
+         } = req.body;
+    const reservaObj = {
+        id: id,  
+        Id_reserva:        Id_reserva,  
+        Valor_total:        Valor_total,  
+    };
+    connection.query(sql, reservaObj, error => {
+        if (error) throw error;
+        res.send('Estudiante creado!');
+    });
+});
+
+
+
+app.post('/api/habitacion', (req, res) => {
+    const sql = 'INSERT INTO Habitacion SET ?';
+    const { 
+        id, 
+        Nombres, 
+        Disponibilidad, 
+        Descripcion, 
+        Imagen, 
+        Precio, 
+        Departamento, 
+        Ciudad, 
+        Direccion, 
+        id_administrador, 
+         } = req.body;
+    const reservaObj = {
+        id:id,  
+        Nombres:        Nombres,  
+        Disponibilidad:        Disponibilidad,  
+        Descripcion:        Descripcion,  
+        Imagen:        Imagen,  
+        Precio:        Precio,  
+        Departamento:        Departamento,  
+        Ciudad:        Ciudad,  
+        Direccion:        Direccion,  
+        id_administrador:        id_administrador,   
     };
     connection.query(sql, reservaObj, error => {
         if (error) throw error;
