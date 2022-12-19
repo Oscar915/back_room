@@ -309,7 +309,7 @@ app.post('/api/reserva', (req, res) => {
     });
 }); 
 
-
+//Agregar reserva
 app.post('/api/reserva', (req, res) => {
     const sql = 'INSERT INTO Reserva SET ?';
     const {
@@ -335,6 +335,29 @@ app.post('/api/reserva', (req, res) => {
         res.send('Modo de pago creado!');
     });
 }); 
+
+
+//Desactivar habitación
+app.put('/api/desactivarhabi',cors(), (req, res) => {
+    const { Id } = req.body;
+    const sql = `UPDATE Habitacion SET Disponibilidad = 'Ocupado' WHERE Habitacion.Id = '${Id}'`;
+
+    connection.query(sql, error => {
+        if (error) throw error;
+        res.send('Habitacion desactivada!');
+    });
+});
+
+//Activar habitación
+app.put('/api/activarhabi',cors(), (req, res) => {
+    const { Id } = req.body;
+    const sql = `UPDATE Habitacion SET Disponibilidad = 'Libre' WHERE Habitacion.Id = '${Id}'`;
+
+    connection.query(sql, error => {
+        if (error) throw error;
+        res.send('Habitacion activada!');
+    });
+});
 
 app.listen(3000, () => {
     console.log("nodejs app running...");
