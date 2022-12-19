@@ -295,7 +295,7 @@ app.post('/api/reserva', (req, res) => {
         if (error) throw error;
         res.send('Modo de pago creado!');
     });
-}); S
+}); 
 
 app.listen(3000, () => {
     console.log("nodejs app running...");
